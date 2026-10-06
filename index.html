@@ -63,14 +63,14 @@
   nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
   nav ul a { color: var(--on-plum); text-decoration: none; font-size: .95rem; opacity: .85; }
   nav ul a:hover { opacity: 1; }
-  @media (max-width: 560px) { nav ul { display: none; } }
+  @media (max-width: 560px) { nav ul { gap: 1.1rem; } nav ul .hide-sm { display: none; } .brand b { font-size: 1.35rem; } }
 
   /* hero */
   .hero {
     background:
       radial-gradient(60rem 30rem at 85% 10%, rgba(242,196,90,.18), transparent 60%),
       linear-gradient(160deg, var(--plum-2), var(--plum) 70%);
-    color: var(--on-plum); padding: 7rem 0 0; overflow: hidden; position: relative;
+    color: var(--on-plum); padding: 6.5rem 0 0; overflow: hidden; position: relative;
   }
   .hero .container { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: end; }
   .hero-copy { padding-bottom: 4rem; }
@@ -100,8 +100,8 @@
     box-shadow: 0 30px 60px rgba(0,0,0,.45); background: #15090F; overflow: hidden;
   }
   .phone img { width: 100%; }
-  .phone.a { left: 0; top: 4.5rem; transform: rotate(-4deg); z-index: 1; opacity: .95; }
-  .phone.b { left: 9rem; top: 0; transform: rotate(3deg); z-index: 2; }
+  .phone.a { left: 0; top: 6rem; transform: rotate(-4deg); z-index: 1; opacity: .95; }
+  .phone.b { left: 9rem; top: 1.5rem; transform: rotate(3deg); z-index: 2; }
   @media (max-width: 860px) {
     .hero .container { grid-template-columns: 1fr; }
     .hero-copy { padding-bottom: 2rem; }
@@ -163,6 +163,77 @@
   footer .container { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
   footer a { margin-right: 1.2rem; }
   footer a:last-child { margin-right: 0; }
+
+  /* ---- eye-catching layer ---- */
+  .hero::before { /* big glowing moon */
+    content: ""; position: absolute; right: -8rem; top: -9rem; width: 34rem; height: 34rem; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(242,196,90,.55), rgba(242,196,90,.12) 45%, transparent 70%);
+    filter: blur(2px); pointer-events: none;
+  }
+  .hero::after { /* dotted star field */
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: radial-gradient(rgba(255,255,255,.55) 1px, transparent 1.5px);
+    background-size: 46px 46px; background-position: 12px 20px;
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent 70%); mask-image: linear-gradient(180deg, #000, transparent 70%);
+  }
+  .hero > .container { position: relative; z-index: 1; }
+  .hero nav { position: absolute; inset: 0 0 auto 0; z-index: 10; }
+  .hero nav .container { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; }
+  h1 em { background: linear-gradient(90deg, #FFE08A, #F2C45A 50%, #F29A5A); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tithi { display: flex; gap: .5rem; align-items: center; margin: 1.75rem 0 0; }
+  .tithi i { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 0 rgba(242,196,90,.6); }
+  .tithi i.o { background: transparent; border: 2px solid rgba(255,255,255,.5); }
+  .tithi i.now { width: 22px; height: 22px; animation: pulse 2.4s infinite; }
+  .tithi span { margin-left: .6rem; font-size: .85rem; opacity: .75; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(242,196,90,.65); } 70% { box-shadow: 0 0 0 14px rgba(242,196,90,0); } 100% { box-shadow: 0 0 0 0 rgba(242,196,90,0); } }
+  .phone.a { animation: floatA 7s ease-in-out infinite; }
+  .phone.b { animation: floatB 6s ease-in-out infinite; }
+  @keyframes floatA { 0%,100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(-4deg) translateY(-10px); } }
+  @keyframes floatB { 0%,100% { transform: rotate(3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-14px); } }
+
+  .stats { background: linear-gradient(90deg, #F2C45A, #F7D98A 50%, #F2C45A); color: #3A0B22; }
+  .stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding-top: 1.6rem; padding-bottom: 1.6rem; text-align: center; }
+  .stats b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.1; }
+  .stats span { font-size: .92rem; font-weight: 500; opacity: .85; }
+  @media (max-width: 560px) { .stats .container { grid-template-columns: 1fr 1fr; row-gap: 1.2rem; } }
+
+  .kicker { display: inline-flex; align-items: center; gap: .5rem; color: var(--primary); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; margin: 0 0 .8rem; }
+  .kicker::before { content: ""; width: 1.6rem; height: 2px; background: var(--gold); }
+  .center .kicker { justify-content: center; }
+  h2 .hl { background: linear-gradient(transparent 62%, rgba(242,196,90,.55) 62%); }
+
+  .feature { position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s, border-color .25s; }
+  .feature::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, var(--gold), #C0392B); transform: scaleX(0); transform-origin: left; transition: transform .35s; }
+  .feature:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(92,14,56,.22); border-color: var(--gold); }
+  .feature:hover::before { transform: scaleX(1); }
+  .feature .ic { background: linear-gradient(145deg, var(--plum-2), var(--plum)); box-shadow: 0 6px 16px rgba(92,14,56,.35); transition: transform .3s; }
+  .feature:hover .ic { transform: rotate(-8deg) scale(1.08); }
+
+  .shot:nth-child(even) { margin-top: 3rem; }
+  @media (max-width: 860px) { .shot:nth-child(even) { margin-top: 0; } }
+  .shot .frame { transition: transform .3s, box-shadow .3s; }
+  .shot:hover .frame { transform: translateY(-8px) scale(1.02); box-shadow: 0 26px 50px rgba(92,14,56,.35); }
+  .showcase { background: radial-gradient(40rem 20rem at 50% 0%, rgba(242,196,90,.22), transparent 70%), var(--surface); }
+
+  .trust { position: relative; overflow: hidden; }
+  .trust::after { content: ""; position: absolute; right: -6rem; bottom: -10rem; width: 26rem; height: 26rem; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(242,196,90,.4), transparent 68%); pointer-events: none; }
+  .trust .container { position: relative; z-index: 1; }
+  .pill { backdrop-filter: blur(4px); transition: transform .25s, background .25s; }
+  .pill:hover { transform: translateY(-4px); background: rgba(255,255,255,.12); }
+
+  .lang { transition: transform .25s, border-color .25s, color .25s; }
+  .lang:hover { transform: translateY(-4px) rotate(-1deg); border-color: var(--gold); color: var(--primary); }
+
+  .cta { background: radial-gradient(34rem 18rem at 50% 100%, rgba(242,196,90,.28), transparent 70%); }
+  .cta h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .no-js .reveal, .reveal.in { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .phone.a, .phone.b, .tithi i.now { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -172,8 +243,8 @@
     <div class="container">
       <a class="brand" href="#"><img src="img/icon.png" alt="" width="40" height="40"><b>कालदर्शी</b></a>
       <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#screens">Screens</a></li>
+        <li class="hide-sm"><a href="#features">Features</a></li>
+        <li class="hide-sm"><a href="#screens">Screens</a></li>
         <li><a href="privacy/">Privacy</a></li>
         <li><a href="support/">Support</a></li>
       </ul>
@@ -196,7 +267,8 @@
           <span><small>Android</small><b>Google Play, soon</b></span>
         </span>
       </div>
-      <p class="hero-note">Free. Made by one person who reads the panchang every day.</p>
+      <div class="tithi" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="now"></i><i class="o"></i><i class="o"></i><i class="o"></i><span>कृष्ण पक्ष · ११ / १५</span></div>
+      <p class="hero-note" style="margin-top:1.4rem">Free. Made by one person who reads the panchang every day.</p>
     </div>
     <div class="phones" aria-hidden="true">
       <div class="phone a"><img src="img/2-calendar.jpg" alt="" width="640" height="1391"></div>
@@ -206,14 +278,24 @@
   <div class="border-strip"></div>
 </header>
 
+<div class="stats">
+  <div class="container">
+    <div><b>3</b><span>languages</span></div>
+    <div><b>3 years</b><span>always in the app</span></div>
+    <div><b>0</b><span>ads, accounts or trackers</span></div>
+    <div><b>100%</b><span>works offline</span></div>
+  </div>
+</div>
+
 <main>
 <section id="features">
   <div class="container">
-    <div class="section-head">
-      <h2>Everything the day asks for</h2>
+    <div class="reveal section-head">
+      <p class="kicker">Features</p>
+      <h2>Everything the <span class="hl">day</span> asks for</h2>
       <p>Open it and see what matters today. Go deeper whenever you want.</p>
     </div>
-    <div class="features">
+    <div class="reveal features">
       <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></svg></div>
         <h3>Today's panchang</h3><p>Tithi, nakshatra, yoga and karana, with sunrise, sunset, moonrise and moonset worked out for your place.</p></div>
       <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
@@ -234,11 +316,12 @@
 
 <section id="screens" class="showcase">
   <div class="container">
-    <div class="section-head center" style="text-align:center">
-      <h2>See it in use</h2>
+    <div class="reveal section-head center" style="text-align:center">
+      <p class="kicker">Screens</p>
+      <h2>See it <span class="hl">in use</span></h2>
       <p>Warm, clear, and made for Devanagari.</p>
     </div>
-    <div class="shots">
+    <div class="reveal shots">
       <div class="shot"><figure><div class="frame"><img src="img/1-today.jpg" alt="Today screen showing tithi, paksha and the day's vrat" loading="lazy" width="640" height="1391"></div><figcaption>Today<span>The day at a glance</span></figcaption></figure></div>
       <div class="shot"><figure><div class="frame"><img src="img/2-calendar.jpg" alt="Month calendar with tithi, festivals and moon phases" loading="lazy" width="640" height="1391"></div><figcaption>Calendar<span>The whole month, every tithi</span></figcaption></figure></div>
       <div class="shot"><figure><div class="frame"><img src="img/3-festivals.jpg" alt="List of festivals for the year" loading="lazy" width="640" height="1391"></div><figcaption>Festivals<span>The full year, explained</span></figcaption></figure></div>
@@ -249,11 +332,12 @@
 
 <section>
   <div class="container">
-    <div class="section-head">
-      <h2>Your language, your numerals</h2>
+    <div class="reveal section-head">
+      <p class="kicker">Languages</p>
+      <h2>Your language, your <span class="hl">numerals</span></h2>
       <p>Switch between Marathi, Hindi and English at any time. The app and the calendar can use different languages, and you choose Devanagari or Latin digits.</p>
     </div>
-    <div class="langs">
+    <div class="reveal langs">
       <div class="lang">मराठी<small>Marathi</small></div>
       <div class="lang">हिन्दी<small>Hindi</small></div>
       <div class="lang">English<small>English</small></div>
@@ -265,7 +349,7 @@
   <div class="container">
     <h2>Private by design</h2>
     <p class="lead">A calendar should not need to know who you are. Kaldarshi keeps everything on your phone.</p>
-    <div class="pills">
+    <div class="reveal pills">
       <div class="pill"><b>Works offline</b><span>The calendar is saved on your device. Reminders arrive without internet.</span></div>
       <div class="pill"><b>No account</b><span>No sign-up, no login, nothing to remember.</span></div>
       <div class="pill"><b>No ads, no tracking</b><span>Just the calendar, nothing following you around.</span></div>
@@ -276,7 +360,7 @@
 
 <section class="cta">
   <div class="container">
-    <h2>Keep the day close</h2>
+    <h2>Keep the <span class="hl">day</span> close</h2>
     <p>Free to download. If a date ever looks wrong, write to <a href="mailto:w3radar.apps@gmail.com">w3radar.apps@gmail.com</a> and it will be looked at.</p>
     <div class="badges">
       <a class="store" href="https://apps.apple.com/in/app/kaldarshi-marathi-calendar/id6819419338" aria-label="Download on the App Store">
@@ -299,5 +383,15 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
 </body>
 </html>

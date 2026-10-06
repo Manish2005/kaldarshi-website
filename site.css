@@ -77,3 +77,18 @@ footer { border-top: 1px solid var(--border); padding: 2rem 0 3rem; color: var(-
 footer .container { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
 footer a { color: var(--primary); margin-right: 1.2rem; }
 footer a:last-child { margin-right: 0; }
+
+/* eye-catching layer */
+.page-hero { position: relative; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; right: -6rem; top: -8rem; width: 26rem; height: 26rem; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(242,196,90,.5), rgba(242,196,90,.1) 45%, transparent 70%); pointer-events: none; }
+.page-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .45;
+  background-image: radial-gradient(rgba(255,255,255,.55) 1px, transparent 1.5px); background-size: 46px 46px; background-position: 12px 20px;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent 80%); mask-image: linear-gradient(180deg, #000, transparent 80%); }
+.page-hero .container { position: relative; z-index: 1; }
+.page-hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); }
+.page-hero h1::after { content: ""; display: block; width: 4rem; height: 4px; border-radius: 2px; margin-top: .9rem; background: linear-gradient(90deg, var(--gold), #F29A5A); }
+.prose h2 { display: flex; align-items: center; gap: .7rem; }
+.prose h2::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(242,196,90,.3); }
+.lede { background: linear-gradient(135deg, rgba(242,196,90,.2), var(--surface) 60%); box-shadow: 0 10px 30px rgba(92,14,56,.08); }
+.prose li::marker { color: var(--gold); }
