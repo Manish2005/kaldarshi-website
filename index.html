@@ -3,171 +3,301 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home, Kaldarshi</title>
-<meta name="description" content="Kaldarshi, a Marathi panchang and festival calendar that works offline.">
+<title>Kaldarshi, Marathi panchang and festival calendar</title>
+<meta name="description" content="Kaldarshi is a Marathi panchang and festival calendar that works offline. Tithi, nakshatra, sunrise and sunset for your place, festivals and vrats, reminders. No ads, no sign-up.">
 <meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Kaldarshi, कालदर्शी">
+<meta property="og:description" content="A Marathi panchang and festival calendar that works offline. No ads, no sign-up.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kaldarshi.w3radar.com/">
+<meta property="og:image" content="https://kaldarshi.w3radar.com/img/1-today.jpg">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #FFF8F1;
     --surface: #F7EEE2;
+    --card: #FFFFFF;
     --text: #201A15;
-    --text-secondary: #434843;
+    --text-secondary: #5A524A;
     --primary: #9A3E1E;
-    --on-primary: #FFFFFF;
-    --primary-fixed: #F6DCCB;
-    --border: #D5C5A8;
-    --outline-variant: #C3C8C1;
-    --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --plum: #5C0E38;
+    --plum-2: #7A1646;
+    --gold: #F2C45A;
+    --on-plum: #FBEFE6;
+    --border: #E4D6BF;
+    --serif: "Tiro Devanagari Marathi", ui-serif, Georgia, serif;
+    --sans: "Mukta", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #201A15;
-      --surface: #33291F;
+      --bg: #1B1410;
+      --surface: #2A2019;
+      --card: #33291F;
       --text: #F6EEE6;
-      --text-secondary: #C3C8C1;
+      --text-secondary: #C9BDB0;
       --primary: #F0A080;
-      --on-primary: #2A1206;
-      --primary-fixed: #4D3022;
-      --border: #504530;
-      --outline-variant: #5A5F58;
+      --border: #4A3D2E;
     }
   }
-
   * { box-sizing: border-box; }
-
+  html { scroll-behavior: smooth; }
   body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.65;
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--sans); font-size: 18px; line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+  a { color: var(--primary); }
+  img { max-width: 100%; height: auto; display: block; }
+  .container { max-width: 70rem; margin: 0 auto; padding: 0 1.5rem; }
 
-  .wrap {
-    max-width: 44rem;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 5rem;
+  /* nav */
+  nav { position: absolute; inset: 0 0 auto 0; z-index: 5; }
+  nav .container { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; }
+  .brand { display: flex; align-items: center; gap: .7rem; color: var(--on-plum); text-decoration: none; }
+  .brand img { width: 40px; height: 40px; border-radius: 10px; }
+  .brand b { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; }
+  nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+  nav ul a { color: var(--on-plum); text-decoration: none; font-size: .95rem; opacity: .85; }
+  nav ul a:hover { opacity: 1; }
+  @media (max-width: 560px) { nav ul { display: none; } }
+
+  /* hero */
+  .hero {
+    background:
+      radial-gradient(60rem 30rem at 85% 10%, rgba(242,196,90,.18), transparent 60%),
+      linear-gradient(160deg, var(--plum-2), var(--plum) 70%);
+    color: var(--on-plum); padding: 7rem 0 0; overflow: hidden; position: relative;
   }
-
-  header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding-bottom: 1.75rem;
-    margin-bottom: 2.5rem;
-    border-bottom: 1px solid var(--outline-variant);
+  .hero .container { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: end; }
+  .hero-copy { padding-bottom: 4rem; }
+  .eyebrow { color: var(--gold); letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; font-weight: 700; margin: 0 0 1rem; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.15; margin: 0 0 1.25rem; }
+  h1 em { font-style: normal; color: var(--gold); white-space: nowrap; }
+  h1 .en { font-size: .8em; opacity: .95; }
+  .hero .container > * { min-width: 0; }
+  body { overflow-x: hidden; }
+  .hero p.sub { font-size: 1.15rem; max-width: 34rem; opacity: .92; margin: 0 0 2rem; }
+  .badges { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+  .store {
+    display: inline-flex; align-items: center; gap: .7rem; background: #000; color: #fff;
+    text-decoration: none; padding: .55rem 1.1rem .55rem .9rem; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.35); line-height: 1.1; transition: transform .15s;
   }
-
-  .mark {
-    flex: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--primary-fixed);
-    display: grid;
-    place-items: center;
+  .store:hover { transform: translateY(-2px); }
+  .store svg { width: 26px; height: 26px; fill: #fff; flex: none; }
+  .store small { display: block; font-size: .68rem; opacity: .85; letter-spacing: .02em; }
+  .store span b { font-size: 1.15rem; font-weight: 500; }
+  .store.soon { background: transparent; border-style: dashed; color: var(--on-plum); cursor: default; opacity: .8; }
+  .store.soon:hover { transform: none; }
+  .hero-note { margin: 1.1rem 0 0; font-size: .92rem; opacity: .75; }
+  .phones { position: relative; height: 34rem; }
+  .phone {
+    position: absolute; width: 15.5rem; border-radius: 2rem; border: 6px solid #15090F;
+    box-shadow: 0 30px 60px rgba(0,0,0,.45); background: #15090F; overflow: hidden;
   }
-
-  .mark svg { width: 26px; height: 26px; fill: var(--primary); }
-
-  .wordmark {
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
+  .phone img { width: 100%; }
+  .phone.a { left: 0; top: 4.5rem; transform: rotate(-4deg); z-index: 1; opacity: .95; }
+  .phone.b { left: 9rem; top: 0; transform: rotate(3deg); z-index: 2; }
+  @media (max-width: 860px) {
+    .hero .container { grid-template-columns: 1fr; }
+    .hero-copy { padding-bottom: 2rem; }
+    .phones { height: 26rem; max-width: 26rem; margin: 0 auto; width: 100%; }
+    .phone { width: 12.5rem; }
+    .phone.b { left: auto; right: 0; }
   }
+  .border-strip { height: 10px; background: repeating-linear-gradient(90deg, #1E7A3C 0 14px, #C0392B 14px 18px, #F2C45A 18px 22px, #C0392B 22px 26px); }
 
-  .wordmark span {
-    display: block;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-top: 0.15rem;
+  /* sections */
+  section { padding: 5rem 0; }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; margin: 0 0 1rem; }
+  .section-head { max-width: 40rem; margin-bottom: 3rem; }
+  .section-head p { color: var(--text-secondary); margin: 0; }
+  .center { text-align: center; margin-left: auto; margin-right: auto; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 860px) { .features { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+  .feature { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem; }
+  .feature .ic { width: 46px; height: 46px; border-radius: 14px; background: var(--plum); color: var(--gold); display: grid; place-items: center; margin-bottom: 1rem; }
+  .feature .ic svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .feature h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin: 0 0 .4rem; }
+  .feature p { margin: 0; color: var(--text-secondary); font-size: 1rem; }
+
+  /* showcase */
+  .showcase { background: var(--surface); }
+  .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  @media (max-width: 860px) {
+    .shots { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+    .shot { flex: 0 0 62%; scroll-snap-align: center; }
   }
+  .shot figure { margin: 0; }
+  .shot .frame { border-radius: 1.6rem; border: 5px solid #15090F; overflow: hidden; box-shadow: 0 16px 36px rgba(60,20,30,.25); }
+  .shot figcaption { margin-top: .9rem; text-align: center; font-weight: 500; }
+  .shot figcaption span { display: block; font-weight: 400; color: var(--text-secondary); font-size: .92rem; }
 
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(1.9rem, 5vw, 2.4rem);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.5rem;
-  }
+  /* trust */
+  .trust { background: linear-gradient(160deg, var(--plum-2), var(--plum)); color: var(--on-plum); }
+  .trust h2 { color: #fff; }
+  .trust .lead { opacity: .85; max-width: 38rem; margin: 0 0 2.5rem; }
+  .pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 860px) { .pills { grid-template-columns: 1fr 1fr; } }
+  .pill { border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); border-radius: 16px; padding: 1.25rem; }
+  .pill b { display: block; font-family: var(--serif); font-weight: 400; color: var(--gold); font-size: 1.25rem; margin-bottom: .3rem; }
+  .pill span { font-size: .95rem; opacity: .85; }
 
-  .updated {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin: 0 0 2.5rem;
-  }
+  .langs { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+  .lang { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem 1.5rem; font-family: var(--serif); font-size: 1.6rem; }
+  .lang small { display: block; font-family: var(--sans); font-size: .85rem; color: var(--text-secondary); }
 
-  h2 {
-    font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    margin: 3rem 0 0.85rem;
-  }
+  /* cta */
+  .cta { text-align: center; }
+  .cta .badges { justify-content: center; margin-top: 1.5rem; }
+  .cta .store.soon { color: var(--text); border-color: var(--border); }
+  .cta p { color: var(--text-secondary); max-width: 34rem; margin: 0 auto; }
 
-  p { margin: 0 0 1.1rem; }
-
-  ul { margin: 0 0 1.1rem; padding-left: 1.3rem; }
-  li { margin-bottom: 0.5rem; }
-  li::marker { color: var(--primary); }
-
-  strong { font-weight: 600; }
-
-  a {
-    color: var(--primary);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-    overflow-wrap: anywhere;
-  }
-  a:hover { text-decoration-thickness: 2px; }
-
-  .lede {
-    background: var(--surface);
-    border-left: 3px solid var(--primary);
-    border-radius: 0 10px 10px 0;
-    padding: 1.15rem 1.35rem;
-    margin: 0 0 2rem;
-  }
-  .lede p:last-child { margin-bottom: 0; }
-
-  .contact {
-    margin-top: 3rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--outline-variant);
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-  }
+  footer { border-top: 1px solid var(--border); padding: 2rem 0 3rem; color: var(--text-secondary); font-size: .95rem; }
+  footer .container { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+  footer a { margin-right: 1.2rem; }
+  footer a:last-child { margin-right: 0; }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></div>
-    <div class="wordmark">Kaldarshi<span>कालदर्शी · Marathi panchang</span></div>
-  </header>
+<header class="hero">
+  <nav>
+    <div class="container">
+      <a class="brand" href="#"><img src="img/icon.png" alt="" width="40" height="40"><b>कालदर्शी</b></a>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#screens">Screens</a></li>
+        <li><a href="privacy/">Privacy</a></li>
+        <li><a href="support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <h1>Kaldarshi</h1>
-  <div class="lede">
-    <p>A Marathi panchang and festival calendar for Android that works offline. Tithi, nakshatra, sunrise and sunset for your place, festivals and vrats, in Marathi, Hindi and English.</p>
+  <div class="container">
+    <div class="hero-copy">
+      <p class="eyebrow">Marathi panchang &amp; festival calendar</p>
+      <h1>आजचा दिवस, <em>एका नजरेत.</em><br><span class="en">Today, at a glance.</span></h1>
+      <p class="sub">Tithi, nakshatra, sunrise and sunset for your place, plus every festival and vrat. In Marathi, Hindi and English. Works without internet, with no ads and no sign-up.</p>
+      <div class="badges">
+        <a class="store" href="https://apps.apple.com/in/app/kaldarshi-marathi-calendar/id6819419338" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.700-2.900-1.900-3.500-1.900-1.500-.2-2.900.9-3.700.9s-1.900-.9-3.200-.8c-1.600 0-3.100 1-4 2.400-1.700 3-.4 7.300 1.200 9.700.8 1.200 1.800 2.500 3 2.400 1.200 0 1.700-.8 3.100-.8s1.900.8 3.200.8c1.300 0 2.100-1.200 2.900-2.300.9-1.300 1.300-2.600 1.300-2.700 0 0-2.400-.9-2.400-3.100zM14 5.600c.7-.8 1.100-1.900 1-3-1 0-2.100.7-2.800 1.500-.6.700-1.200 1.800-1 2.900 1.100.1 2.100-.6 2.800-1.400z"/></svg>
+          <span><small>Download on the</small><b>App Store</b></span>
+        </a>
+        <!-- Play Store: replace this block with a normal <a class="store" href="PLAY_URL"> once the listing is public -->
+        <span class="store soon" aria-label="Google Play, coming soon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.800v18.400c0 .4.4.6.7.4l16-9.200c.3-.2.3-.6 0-.8L4.700 2.400C4.400 2.200 4 2.400 4 2.800z"/></svg>
+          <span><small>Android</small><b>Google Play, soon</b></span>
+        </span>
+      </div>
+      <p class="hero-note">Free. Made by one person who reads the panchang every day.</p>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone a"><img src="img/2-calendar.jpg" alt="" width="640" height="1391"></div>
+      <div class="phone b"><img src="img/1-today.jpg" alt="" width="640" height="1391"></div>
+    </div>
   </div>
-  <p><a href="privacy/">Privacy policy</a> · <a href="support/">Support</a></p>
+  <div class="border-strip"></div>
+</header>
 
-  <p class="contact">Kaldarshi: a Marathi panchang and festival calendar that works offline. <a href="privacy/">Privacy</a> · <a href="support/">Support</a></p>
+<main>
+<section id="features">
+  <div class="container">
+    <div class="section-head">
+      <h2>Everything the day asks for</h2>
+      <p>Open it and see what matters today. Go deeper whenever you want.</p>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></svg></div>
+        <h3>Today's panchang</h3><p>Tithi, nakshatra, yoga and karana, with sunrise, sunset, moonrise and moonset worked out for your place.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>Month calendar</h3><p>A wall-calendar view with festivals, vrats and tithi on every day, like the one on your wall.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18M5.600 5.600l12.800 12.800M18.400 5.600L5.600 18.400"/></svg></div>
+        <h3>Festivals and vrats</h3><p>The full list for the year, each with a short explanation. Search any of them by name.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1112 0c0 7 3 8 3 8H3s3-1 3-8M10 21h4"/></svg></div>
+        <h3>Reminders</h3><p>Festivals, vrats and special days: the morning of, the evening before, or at moonrise for Sankashti. Switch on every Ekadashi in one tap.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7M16 6l-4-4-4 4M12 2v14"/></svg></div>
+        <h3>Share as a card</h3><p>Send a day, festival or vrat as an image card on WhatsApp, or a festival greeting to family.</p></div>
+      <div class="feature"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1116 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Your own city</h3><p>Times for your location or any place on the list, in India or abroad.</p></div>
+      <div class="feature" style="grid-column: 1 / -1;"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0115.500-6.200L21 8M21 3v5h-5M21 12a9 9 0 01-15.500 6.200L3 16M3 21v-5h5"/></svg></div>
+        <h3>No new version each year</h3><p>Last year, this year and next year are always in the app. In December, next year is already there. Nothing to buy or download again.</p></div>
+    </div>
+  </div>
+</section>
 
-</div>
+<section id="screens" class="showcase">
+  <div class="container">
+    <div class="section-head center" style="text-align:center">
+      <h2>See it in use</h2>
+      <p>Warm, clear, and made for Devanagari.</p>
+    </div>
+    <div class="shots">
+      <div class="shot"><figure><div class="frame"><img src="img/1-today.jpg" alt="Today screen showing tithi, paksha and the day's vrat" loading="lazy" width="640" height="1391"></div><figcaption>Today<span>The day at a glance</span></figcaption></figure></div>
+      <div class="shot"><figure><div class="frame"><img src="img/2-calendar.jpg" alt="Month calendar with tithi, festivals and moon phases" loading="lazy" width="640" height="1391"></div><figcaption>Calendar<span>The whole month, every tithi</span></figcaption></figure></div>
+      <div class="shot"><figure><div class="frame"><img src="img/3-festivals.jpg" alt="List of festivals for the year" loading="lazy" width="640" height="1391"></div><figcaption>Festivals<span>The full year, explained</span></figcaption></figure></div>
+      <div class="shot"><figure><div class="frame"><img src="img/4-vrat.jpg" alt="Vrats such as Ekadashi and Sankashti" loading="lazy" width="640" height="1391"></div><figcaption>Vrats<span>Ekadashi, Sankashti and more</span></figcaption></figure></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Your language, your numerals</h2>
+      <p>Switch between Marathi, Hindi and English at any time. The app and the calendar can use different languages, and you choose Devanagari or Latin digits.</p>
+    </div>
+    <div class="langs">
+      <div class="lang">मराठी<small>Marathi</small></div>
+      <div class="lang">हिन्दी<small>Hindi</small></div>
+      <div class="lang">English<small>English</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="private" class="trust">
+  <div class="container">
+    <h2>Private by design</h2>
+    <p class="lead">A calendar should not need to know who you are. Kaldarshi keeps everything on your phone.</p>
+    <div class="pills">
+      <div class="pill"><b>Works offline</b><span>The calendar is saved on your device. Reminders arrive without internet.</span></div>
+      <div class="pill"><b>No account</b><span>No sign-up, no login, nothing to remember.</span></div>
+      <div class="pill"><b>No ads, no tracking</b><span>Just the calendar, nothing following you around.</span></div>
+      <div class="pill"><b>Location stays here</b><span>Used once on your phone to find your place. Never sent anywhere.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Keep the day close</h2>
+    <p>Free to download. If a date ever looks wrong, write to <a href="mailto:w3radar.apps@gmail.com">w3radar.apps@gmail.com</a> and it will be looked at.</p>
+    <div class="badges">
+      <a class="store" href="https://apps.apple.com/in/app/kaldarshi-marathi-calendar/id6819419338" aria-label="Download on the App Store">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.700-2.900-1.900-3.500-1.900-1.500-.2-2.900.9-3.700.9s-1.900-.9-3.200-.8c-1.600 0-3.100 1-4 2.400-1.700 3-.4 7.300 1.200 9.700.8 1.200 1.800 2.500 3 2.400 1.200 0 1.700-.8 3.100-.8s1.900.8 3.200.8c1.300 0 2.100-1.200 2.900-2.300.9-1.300 1.300-2.600 1.300-2.700 0 0-2.400-.9-2.400-3.100zM14 5.600c.7-.8 1.100-1.900 1-3-1 0-2.100.7-2.800 1.500-.6.700-1.200 1.800-1 2.900 1.100.1 2.100-.6 2.800-1.400z"/></svg>
+        <span><small>Download on the</small><b>App Store</b></span>
+      </a>
+      <span class="store soon" aria-label="Google Play, coming soon">
+        <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor"><path d="M4 2.800v18.400c0 .4.4.6.7.4l16-9.200c.3-.2.3-.6 0-.8L4.700 2.400C4.400 2.200 4 2.400 4 2.800z"/></svg>
+        <span><small>Android</small><b>Google Play, soon</b></span>
+      </span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div>Kaldarshi · कालदर्शी, a Marathi panchang and festival calendar.</div>
+    <div><a href="privacy/">Privacy</a><a href="support/">Support</a><a href="mailto:w3radar.apps@gmail.com">Contact</a></div>
+  </div>
+</footer>
+
 </body>
 </html>

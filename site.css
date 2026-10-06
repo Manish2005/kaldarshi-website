@@ -1,0 +1,79 @@
+/* Shared styles for the inner pages (privacy, support). The landing page keeps its own inline CSS; keep tokens in sync. */
+:root {
+  --bg: #FFF8F1;
+  --surface: #F7EEE2;
+  --card: #FFFFFF;
+  --text: #201A15;
+  --text-secondary: #5A524A;
+  --primary: #9A3E1E;
+  --plum: #5C0E38;
+  --plum-2: #7A1646;
+  --gold: #F2C45A;
+  --on-plum: #FBEFE6;
+  --border: #E4D6BF;
+  --serif: "Tiro Devanagari Marathi", ui-serif, Georgia, serif;
+  --sans: "Mukta", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1B1410;
+    --surface: #2A2019;
+    --card: #33291F;
+    --text: #F6EEE6;
+    --text-secondary: #C9BDB0;
+    --primary: #F0A080;
+    --border: #4A3D2E;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-size: 18px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: 70rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* header band */
+.page-hero {
+  background:
+    radial-gradient(60rem 24rem at 85% 0%, rgba(242,196,90,.18), transparent 60%),
+    linear-gradient(160deg, var(--plum-2), var(--plum) 70%);
+  color: var(--on-plum); padding: 1.25rem 0 3rem;
+}
+.topnav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3rem; }
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--on-plum); text-decoration: none; }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.brand b { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; }
+.topnav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+.topnav ul a { color: var(--on-plum); text-decoration: none; font-size: .95rem; opacity: .85; }
+.topnav ul a:hover, .topnav ul a[aria-current] { opacity: 1; }
+.topnav ul a[aria-current] { border-bottom: 2px solid var(--gold); padding-bottom: 2px; }
+@media (max-width: 560px) { .topnav ul .hide-sm { display: none; } .topnav ul { gap: 1rem; } }
+.page-hero h1 {
+  font-family: var(--serif); font-weight: 400; color: #fff;
+  font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 0;
+}
+.page-hero .updated { margin: .6rem 0 0; opacity: .8; font-size: .95rem; }
+.border-strip { height: 10px; background: repeating-linear-gradient(90deg, #1E7A3C 0 14px, #C0392B 14px 18px, #F2C45A 18px 22px, #C0392B 22px 26px); }
+
+/* prose */
+.prose { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+.prose h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; line-height: 1.3; margin: 2.75rem 0 .85rem; }
+.prose p { margin: 0 0 1.1rem; }
+.prose ul { margin: 0 0 1.1rem; padding-left: 1.3rem; }
+.prose li { margin-bottom: .55rem; }
+.prose li::marker { color: var(--primary); }
+.prose strong { font-weight: 700; }
+.prose a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.prose a:hover { text-decoration-thickness: 2px; }
+.lede {
+  background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--gold);
+  border-radius: 0 14px 14px 0; padding: 1.2rem 1.4rem; margin: 0 0 1.5rem; font-size: 1.1rem;
+}
+.lede p:last-child { margin-bottom: 0; }
+
+footer { border-top: 1px solid var(--border); padding: 2rem 0 3rem; color: var(--text-secondary); font-size: .95rem; }
+footer .container { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+footer a { color: var(--primary); margin-right: 1.2rem; }
+footer a:last-child { margin-right: 0; }
